@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمود محمد | فنان تشكيلي مبدع</title>
+    
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* ------------------- */
+        /* --- Global Styles & Variables --- */
+        /* ------------------- */
+        :root {
+            --primary-color: #0DCAF0; /* لون سماوي مشرق */
+            --dark-color: #121212; /* أسود أكثر عمقاً */
+            --secondary-dark-color: #1e1e1e;
+            --light-color: #f4f4f4;
+            --gray-color: #999;
+            --glow-color: rgba(13, 202, 240, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            cursor: none; /* إخفاء مؤشر الفأرة الافتراضي */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        /* ------------------- */
+        /* --- Custom Cursor --- */
+        /* ------------------- */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: all 0.1s ease-out;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            transition: all 0.15s ease-out;
+        }
+        .cursor-outline.hover-grow {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: var(--glow-color);
+        }
+
+        /* ------------------- */
+        /* --- Header / Hero --- */
+        /* ------------------- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            animation: zoomInBg 25s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        .hero-content {
+            animation: fadeInContent 1.5s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: slideUp 1s ease-out 0.5s backwards;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.6rem;
+            color: var(--light-color);
+            margin-bottom: 20px;
+            animation: slideUp 1s ease-out 0.8s backwards;
+        }
+
+        .hero-content .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light-color);
+            font-size: 1rem;
+            animation: bounce 2.5s infinite;
+        }
+        
+        .scroll-down i {
+            display: block;
+            font-size: 1.5rem;
+        }
+
+        /* ------------------- */
+        /* --- About Section --- */
+        /* ------------------- */
+        #about {
+            background-color: var(--secondary-dark-color);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .info-card {
+            background-color: var(--dark-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border-right: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6), 0 0 20px var(--glow-color);
+        }
+
+        .info-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-left: 15px;
+            width: 28px;
+        }
+        
+        .lang-progress {
+            width: 100%;
+            background-color: var(--secondary-dark-color);
+            border-radius: 5px;
+            height: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .lang-progress .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #09b8d8);
+            border-radius: 5px;
+            width: 0; /* يبدأ من الصفر وسيتم تحريكه بالجافاسكريبت */
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .bio-content p {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        
+        /* ------------------- */
+        /* -- Gallery Section -- */
+        /* ------------------- */
+        #gallery {
+             background-color: var(--dark-color);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            filter: grayscale(40%) brightness(0.9);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(18, 18, 18, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .overlay .text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+        .overlay i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px var(--glow-color);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .gallery-item:hover .overlay .text {
+            transform: translateY(0);
+        }
+        .gallery-item:hover .overlay i {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+
+        /* ------------------- */
+        /* --- Modal (Lightbox) --- */
+        /* ------------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 18, 18, 0.95);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 85%;
+            animation: zoomInModal 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 45px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .close-btn:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+        
+        /* ------------------- */
+        /* -- Back to Top Button -- */
+        /* ------------------- */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 100;
+        }
+        .back-to-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* ------------------- */
+        /* --- Scroll Animations --- */
+        /* ------------------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ------------------- */
+        /* ------- Footer -------- */
+        /* ------------------- */
+        footer {
+            background-color: var(--secondary-dark-color);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #333;
+        }
+        footer p {
+            font-size: 1rem;
+            color: var(--gray-color);
+        }
+
+        /* ------------------- */
+        /* --- Animations Keyframes --- */
+        /* ------------------- */
+        @keyframes fadeInContent { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomInBg { from { transform: scale(1); } to { transform: scale(1.15); } }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+        @keyframes zoomInModal { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        /* ------------------- */
+        /* -- Responsive Design -- */
+        /* ------------------- */
+        @media(max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .info-card { margin-bottom: 30px; }
+            .bio-content { text-align: center; }
+            .bio-content p { text-align: justify; }
+        }
+
+        @media(max-width: 768px) {
+            body { cursor: auto; } /* إلغاء المؤشر المخصص على الجوال */
+            .cursor-dot, .cursor-outline { display: none; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content .subtitle { font-size: 1.3rem; }
+            .section-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- ======== Custom Cursor Elements ======== -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- ======== Header / Hero Section ======== -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>محمود محمد 🎨</h1>
+            <p class="subtitle">فنان تشكيلي – الرسم على الزجاج</p>
+            <a href="#about" class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+                <span>اكتشف المزيد</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======== About Section ======== -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <!-- Info Card -->
+                    <div class="info-card reveal">
+                        <h3>معلومات شخصية</h3>
+                        <div class="info-item"><i class="fas fa-map-marker-alt"></i><span><b>الموقع:</b> القاهرة، مصر</span></div>
+                        <div class="info-item"><i class="fas fa-calendar-alt"></i><span><b>العمر:</b> 17 سنة</span></div>
+                        <div class="info-item"><i class="fas fa-language"></i><span><b>اللغات:</b></span></div>
+                        <div style="padding-right: 40px; margin-top:-10px;">
+                             <p>اللغة الإنجليزية (متقن)</p>
+                             <div class="lang-progress"><div class="progress-bar" data-width="95%"></div></div>
+                             <p>اللغة الفرنسية (قيد التطوير)</p>
+                             <div class="lang-progress"><div class="progress-bar" data-width="40%"></div></div>
+                        </div>
+
+                        <h3 style="margin-top: 30px;">التخصص</h3>
+                        <div class="info-item"><i class="fas fa-palette"></i><span>فنان متخصص في الرسم على الزجاج</span></div>
+                        <div class="info-item"><i class="fas fa-globe-europe"></i><span>تصدير الأعمال إلى أوروبا</span></div>
+                        <div class="info-item"><i class="fas fa-coins"></i><span>التعامل بالعملات الأجنبية</span></div>
+                    </div>
+
+                    <!-- Bio Content -->
+                    <div class="bio-content reveal" style="transition-delay: 0.2s;">
+                        <h2 class="section-title" style="text-align: right; font-size: 2.5rem; margin-bottom: 20px;">🖌 نبذة شخصية</h2>
+                        <p>
+                            أنا محمود محمد، فنان شغوف بتحويل الزجاج إلى لوحات فنية تنبض بالحياة. أعمل على تصميم وتنفيذ رسومات يدوية دقيقة على الزجاج، تتنوع بين التصاميم الكلاسيكية والحديثة، مع لمسات إبداعية خاصة. تلقى أعمالي اهتمامًا من الأسواق الأوروبية حيث يتم تصديرها إلى الخارج.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== Gallery Section ======== -->
+        <section id="gallery">
+            <div class="container">
+                <h2 class="section-title reveal">📸 أعمالي</h2>
+                <div class="gallery-grid">
+                    
+                    <!-- استبدل الروابط التالية بروابط صور أعمالك -->
+                    <div class="gallery-item reveal"><img src="01.jpg" alt="عمل فني 1"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;"><img src="02.jpg" alt="عمل فني"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;"><img src="03.jpg" alt="عمل فني"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;"><img src="04.jpg" alt="عمل فني"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;"><img src="05.jpg" alt="عمل فني"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;"><img src="06.jpg" alt="عمل فني"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;"><img src="07.jpg" alt="عمل فني"><div class="overlay"><i class="fas fa-search-plus"></i><span class="text">بورتريه على الزجاج</span></div></div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ======== Footer ======== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 محمود محمد. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- ======== Modal for Image Lightbox ======== -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- ======== Back to Top Button ======== -->
+    <a href="#home" class="back-to-top-btn"><i class="fas fa-arrow-up"></i></a>
+
+
+    <!-- ======== JavaScript Section ======== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ----------------------------------------
+            // --- 1. Custom Cursor Logic ---
+            // ----------------------------------------
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+            
+            const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .close-btn');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseover', () => cursorOutline.classList.add('hover-grow'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover-grow'));
+            });
+
+            // ----------------------------------------
+            // --- 2. Scroll Animation Logic (Intersection Observer) ---
+            // ----------------------------------------
+            const revealElements = document.querySelectorAll('.reveal');
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Reveal general elements
+                        if (entry.target.classList.contains('reveal')) {
+                            entry.target.classList.add('active');
+                        }
+                        
+                        // Animate progress bars
+                        if (entry.target.classList.contains('progress-bar')) {
+                            const width = entry.target.getAttribute('data-width');
+                            entry.target.style.width = width;
+                        }
+
+                        // Stop observing once the animation is done
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            revealElements.forEach(el => observer.observe(el));
+            progressBars.forEach(bar => observer.observe(bar));
+
+            // ----------------------------------------
+            // --- 3. Lightbox (Modal) Logic ---
+            // ----------------------------------------
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const closeBtn = document.querySelector('.close-btn');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    modal.style.display = 'flex';
+                    modalImg.src = item.querySelector('img').src;
+                });
+            });
+
+            const closeModal = () => modal.style.display = 'none';
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+            // ----------------------------------------
+            // --- 4. Back to Top Button Logic ---
+            // ----------------------------------------
+            const backToTopBtn = document.querySelector('.back-to-top-btn');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
